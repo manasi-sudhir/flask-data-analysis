@@ -1,0 +1,4 @@
+traffic_data.db
+*.pyc
+__pycache__/
+static/dashboard.png
