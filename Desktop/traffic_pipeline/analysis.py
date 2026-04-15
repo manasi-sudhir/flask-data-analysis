@@ -19,7 +19,11 @@ df['incident_type'].value_counts().plot(kind='bar')
 plt.title("Traffic Incidents by Type")
 plt.xlabel("Incident Type")
 plt.ylabel("count")
-plt.savefig("incident_type_analysis.png")
+
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+
+plt.savefig("static/incident_type_analysis.png")
 plt.close()
 
 #2.Hourly Analysis
@@ -31,7 +35,7 @@ df['hour'].value_counts().sort_index().plot(kind='bar')
 plt.title("Traffic Incidents by Hour")
 plt.xlabel("Hour")
 plt.ylabel("Count")
-plt.savefig("hourly_analysis.png")
+plt.savefig("static/hourly_analysis.png")
 plt.close()
 
 #day analysis
@@ -42,20 +46,29 @@ df['day'].value_counts().plot(kind='bar')
 plt.title("Traffic Incidents by Day")
 plt.xlabel("Day")
 plt.ylabel("Count")
-plt.savefig("day_anaysis.png")
+
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+
+plt.savefig("static/day_analysis.png")
 plt.close()
 
 #Severity Analysis
-
-print("|nSeverity Distribution:")
+print("\nSeverity Distribution:")
 print(df['severity'].value_counts())
-plt.figure(figsize=(10,6))
-df['severity'].value_counts().plot(kind='bar')
+
+plt.figure()
+
+df['severity'].value_counts().plot(
+    kind='pie',
+    autopct='%1.1f%%',
+    startangle=90
+)
+
 plt.title("Traffic Severity Distribution")
-plt.xlabel("Severity")
-plt.ylabel("Count")
-plt.savefig("severity_analysis.png")
-plt.close()
+plt.ylabel("")
+
+plt.savefig("static/severity_pie.png")
 
 #Time of Day Analysis
 print("\nTime of Day Distribution:")
@@ -65,18 +78,31 @@ df['time_of_day'].value_counts().plot(kind='bar')
 plt.title("Traffic Incidents by Time of Day")
 plt.xlabel("Time of Day")
 plt.ylabel("Count")
-plt.savefig("Time_of_day_analysis.png")
+
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+
+plt.savefig("static/time_of_day_analysis.png")
 plt.close()
 
-#Traffic Zone Analysis
+# Traffic Zone Analysis (PIE)
+
 print("\nTraffic zone Distribution")
 print(df['traffic_zone'].value_counts())
-plt.figure(figsize=(10,6))
-df['traffic_zone'].value_counts().plot(kind='bar')
-plt.title("Traffic Incidents by Zone")
-plt.xlabel("Zone")
-plt.ylabel("Zone")
-plt.savefig("Traffic_Zone_Anlysis.png")
+
+plt.figure(figsize=(8,8))
+
+colors = ['#2E86C1', '#28B463', '#F39C12']  # blue, green, orange
+
+df['traffic_zone'].value_counts().plot(
+    kind='pie',
+    autopct='%1.1f%%',
+    colors=colors
+)
+
+plt.title("Traffic Zone Distribution")
+
+plt.savefig("static/traffic_zone_analysis.png")
 plt.close()
 
 #Rush Hour Analysis
@@ -87,7 +113,32 @@ df['rush_hour_category'].value_counts().plot(kind='bar')
 plt.title("Rush Hour Traffic Incidents")
 plt.xlabel("Rush Hour Category")
 plt.ylabel("count")
-plt.savefig("rush_hour_analysis.png")
+
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+
+plt.savefig("static/rush_hour_analysis.png")
+plt.close()
+
+# Severity vs Time of Day Analysis
+
+print("\nSeverity vs Time of Day:")
+pivot = df.groupby(['time_of_day', 'severity']).size().unstack()
+
+print(pivot)
+
+plt.figure()
+
+pivot.plot(kind='bar', stacked=True)
+
+plt.title("Severity vs Time of Day")
+plt.xlabel("Time of Day")
+plt.ylabel("Count")
+
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+
+plt.savefig("static/severity_time.png")
 plt.close()
 
 #Close connection

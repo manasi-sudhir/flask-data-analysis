@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dublin Traffic Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+         }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: white ;
+        }
+
+        /* MAIN LAYOUT */
+        .container {
+             width: 95%;
+             margin: auto;        /* center it */
+             padding: 20px;
+        }
+        /* LEFT GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 per row */
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* SAME SIZE CHARTS */
+        .card img {
+            width: 100%;
+            height: 260px;   /* bigger charts */
+            object-fit: contain;
+        }
+        /* PIE CHART (RIGHT SIDE BIG) */
+        .right-pie img {
+            width: 100%;
+            max-width: 400px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>Dublin Traffic Data Dashboard</h1>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="grid">
+
+        <!-- ROW 1 -->
+
+        <div class="card">
+            <h3>Traffic by Hour</h3>
+            <img src="/static/hourly_analysis.png">
+        </div>
+
+        <div class="card">
+            <h3>Time of Day</h3>
+            <img src="/static/time_of_day_analysis.png">
+        </div>
+
+        <div class="card">
+            <h3>Severity vs Time of Day</h3>
+            <img src="/static/severity_time.png">
+        </div>
+        <!-- ROW 2 -->
+        <div class="card">
+            <h3>Day Analysis</h3>
+            <img src="/static/day_analysis.png">
+        </div>
+
+        <div class="card">
+            <h3>Incident Type</h3>
+            <img src="/static/incident_type_analysis.png">
+        </div>
+
+        <div class="card">
+            <h3>Rush Hour</h3>
+            <img src="/static/rush_hour_analysis.png">
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="card">
+            <h3>Traffic Zone</h3>
+            <img src="/static/traffic_zone_analysis.png">
+        </div>
+
+        <div class="card">
+            <h3>Severity</h3>
+            <img src="/static/severity_pie.png">
+        </div>
+
+        <!-- EMPTY SPACE FOR ALIGNMENT -->
+        <div class="card" style="visibility:hidden;"></div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
